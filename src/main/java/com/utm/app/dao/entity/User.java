@@ -14,12 +14,16 @@ public class User {
   private Long id;
 
   @Column private String username;
+  @Column private String emailAddress;
+  @Column private String password;
   @OneToMany private List<User> contactList;
   @OneToMany private List<Message> receivedMessages = new LinkedList<>();
   @OneToMany private List<Message> sentMessages = new LinkedList<>();
 
-  public User(String username) {
+  public User(String username, String emailAddress, String password) {
     this.username = username;
+    this.emailAddress = emailAddress;
+    this.password = password;
   }
 
   public User() {}
@@ -29,5 +33,13 @@ public class User {
       contactList.add(user);
       user.addToContactList(this);
     }
+  }
+
+  public void addSentMessage(Message sentMessage) {
+    sentMessages.add(sentMessage);
+  }
+
+  public void addReceivedMessage(Message receivedMessage) {
+    receivedMessages.add(receivedMessage);
   }
 }

@@ -21,10 +21,10 @@ public class DataLoader implements ApplicationRunner {
 
   @Override
   public void run(ApplicationArguments args) throws Exception {
-    User user1 = new User("Alex");
-    User user2 = new User("Jora");
-    User user3 = new User("Fedea");
-    User user4 = new User("Ion");
+    User user1 = new User("Alex", "alex@gmail.com", "mypassword");
+    User user2 = new User("Jora","jora@gmail.com", "mypassword");
+    User user3 = new User("Fedea","fedea@gmail.com", "mypassword");
+    User user4 = new User("Ion","ion@gmail.com", "mypassword");
     userRepository.saveAll(new LinkedList<>(Arrays.asList(user1, user2, user3, user4)));
   }
 }

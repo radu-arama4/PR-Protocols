@@ -30,18 +30,27 @@ public class MessageServiceImpl implements MessageService {
 
   @Override
   public String sendMessage(MessageDto message) {
+    User userToSend = userRepository.getById(message.getFromUserId());
+    User userToReceive = userRepository.getById(message.getToUserId());
+
     SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-    mailMessage.setTo(message.getTo());
+    mailMessage.setTo(userToReceive.getEmailAddress());
     mailMessage.setText(message.getMessage());
     mailMessage.setSubject(message.getTitle());
-    mailMessage.setReplyTo(message.getFrom());
+    mailMessage.setReplyTo(userToSend.getEmailAddress());
 
     try {
       mailSender.send(mailMessage);
     } catch (Exception e) {
       log.error(e);
+      return "Mail could not be sent...";
     }
+
+    Message sentMessage = new Message();
+    BeanUtils.copyProperties(message, sentMessage);
+
+    userToSend.addSentMessage(sentMessage);
 
     return "Mail sent successfully...";
   }
