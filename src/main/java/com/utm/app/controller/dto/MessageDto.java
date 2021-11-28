@@ -1,4 +1,4 @@
-package com.utm.app.dto;
+package com.utm.app.controller.dto;
 
 import lombok.Data;
 

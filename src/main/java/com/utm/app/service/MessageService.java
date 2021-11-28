@@ -1,7 +1,7 @@
 package com.utm.app.service;
 
-import com.utm.app.dto.MessageDto;
-import com.utm.app.dto.UserDto;
+import com.utm.app.controller.dto.MessageDto;
+import com.utm.app.controller.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

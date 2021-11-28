@@ -3,8 +3,8 @@ package com.utm.app.service.impl;
 import com.utm.app.dao.entity.Message;
 import com.utm.app.dao.entity.User;
 import com.utm.app.dao.UserRepository;
-import com.utm.app.dto.MessageDto;
-import com.utm.app.dto.UserDto;
+import com.utm.app.controller.dto.MessageDto;
+import com.utm.app.controller.dto.UserDto;
 import com.utm.app.service.MessageService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
@@ -51,6 +51,7 @@ public class MessageServiceImpl implements MessageService {
     BeanUtils.copyProperties(message, sentMessage);
 
     userToSend.addSentMessage(sentMessage);
+    userToReceive.addReceivedMessage(sentMessage);
 
     return "Mail sent successfully...";
   }

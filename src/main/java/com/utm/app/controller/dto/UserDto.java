@@ -1,9 +1,6 @@
-package com.utm.app.dto;
+package com.utm.app.controller.dto;
 
 import lombok.Data;
-
-import javax.persistence.Column;
-import javax.persistence.Id;
 
 @Data
 public class UserDto {

@@ -1,7 +1,9 @@
 package com.utm.app.controller;
 
-import com.utm.app.dto.MessageDto;
-import com.utm.app.dto.UserDto;
+import com.utm.app.controller.dto.request.AddUserToContactListDto;
+import com.utm.app.controller.dto.MessageDto;
+import com.utm.app.controller.dto.UserDto;
+import com.utm.app.controller.dto.request.RemoveUserFromContactListDto;
 import com.utm.app.service.MessageService;
 import com.utm.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +36,15 @@ public class UserController {
   @GetMapping("/message/sent")
   public List<MessageDto> getSentMessages(@RequestBody UserDto user) {
     return messageService.getSentMessages(user);
+  }
+
+  @PutMapping("/contacts")
+  public UserDto addUserToContactList(@RequestBody AddUserToContactListDto userDto) {
+    return userService.addUserToContactsList(userDto);
+  }
+
+  @PutMapping("/contacts")
+  public UserDto removeUserFromContactList(@RequestBody RemoveUserFromContactListDto userDto) {
+    return userService.removeUserFromContactsList(userDto);
   }
 }
